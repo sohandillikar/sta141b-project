@@ -8,7 +8,5 @@ Goal: Find the best apartment complex in Davis based on the following:
 4. Number of crimes within a certain radius
 5. Reviews of the apartment complex
 
-For crime data, addresses, and severity, we will use the dataset in ./data/crimes.csv
-
 [Davis Bus Stops](https://unitrans.ucdavis.edu/sites/g/files/dgvnsk13431/files/inline-files/BusStopAccessibilityList_20240909_StopID.pdf)
 [Davis Crimes](https://ucdavis.app.box.com/v/daily-police-logs/file/1894348886020)
