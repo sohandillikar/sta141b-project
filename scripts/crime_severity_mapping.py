@@ -162,7 +162,7 @@ severity_mapping = {
     'CASE NUMBER PULLED IN ERROR': np.nan,
 }
 
-df = pd.read_csv('./data/crimes.csv')
+df = pd.read_csv('../data/crimes.csv')
 
 # Add severity column using mapping
 df['severity'] = df['Report Classification'].map(severity_mapping)
