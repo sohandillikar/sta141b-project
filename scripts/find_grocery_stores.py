@@ -12,18 +12,17 @@ gmaps = googlemaps.Client(key=os.getenv('GOOGLE_MAPS_API_KEY'))
 davis_center = (38.5449, -121.7405)
 radius = 9656  # ~6 miles in meters (covers all of Davis)
 
-all_apartments = []
+all_grocery_stores = []
 seen_place_ids = set()
 queries = [
-    'apartment complex',
-    'apartment building', 
-    'apartments',
-    'student housing',
-    'apartment community',
-    'apartment rental'
+    'grocery store',
+    'supermarket',
+    'grocery',
+    'food market',
+    'grocery store in Davis'
 ]
 
-print("Searching for apartments...")
+print("Searching for grocery stores...")
 
 for query in queries:
     try:
@@ -41,7 +40,7 @@ for query in queries:
             if place_id in seen_place_ids:
                 continue
             seen_place_ids.add(place_id)
-            apartment_info = {
+            grocery_info = {
                 'name': place.get('name'),
                 'address': place.get('formatted_address'),
                 'lat': place['geometry']['location']['lat'],
@@ -51,8 +50,8 @@ for query in queries:
                 'user_ratings_total': place.get('user_ratings_total'),
                 'types': place.get('types', [])
             }
-            
-            all_apartments.append(apartment_info)
+
+            all_grocery_stores.append(grocery_info)
         
         while 'next_page_token' in places_result:
             time.sleep(2)
@@ -65,7 +64,7 @@ for query in queries:
                 place_id = place.get('place_id')
                 if place_id not in seen_place_ids:
                     seen_place_ids.add(place_id)
-                    apartment_info = {
+                    grocery_info = {
                         'name': place.get('name'),
                         'address': place.get('formatted_address'),
                         'lat': place['geometry']['location']['lat'],
@@ -75,7 +74,7 @@ for query in queries:
                         'user_ratings_total': place.get('user_ratings_total'),
                         'types': place.get('types', [])
                     }
-                    all_apartments.append(apartment_info)
+                    all_grocery_stores.append(grocery_info)
         
         time.sleep(0.5)
         
@@ -83,15 +82,15 @@ for query in queries:
         print(f"Error searching for '{query}': {e}")
         continue
 
-print(f"\nTotal unique apartments found: {len(all_apartments)}")
+print(f"\nTotal unique grocery stores found: {len(all_grocery_stores)}")
 
-df = pd.DataFrame(all_apartments)
+df = pd.DataFrame(all_grocery_stores)
 
 df = df[df['address'].str.contains('Davis', case=False, na=False)]
 df = df.sort_values('name').reset_index(drop=True)
 
-df.to_csv('../data/apartments_v1.csv', index=False)
+df.to_csv('../data/grocery_stores_v1.csv', index=False)
 
-print(f"\nSaved {len(df)} apartments to ../data/apartments_v1.csv")
-print("\nFirst 10 apartments:")
+print(f"\nSaved {len(df)} grocery stores to ../data/grocery_stores_v1.csv")
+print("\nFirst 10 grocery stores:")
 print(df[['name', 'address', 'rating']].head(10))
