@@ -38,6 +38,10 @@ We removed apartments that did not have any of the following values since it wou
 
 We calculated the driving distance in miles and minutes between the apartment complexes and Memorial Union by writing `ucd_distance.py` that uses the Distance Matrix function from the Google Maps API. We saved this data in `apartments_v5.csv`.
 
+#### Step 6: Calculating distance from grocery stores
+
+We calculated the driving distance in miles and minutes between each apartment complex and grocery store in `grocery_distance.py`, similar to `ucd_distance.py`. This time we used batching to limit the number of API calls and improve performance.
+
 ### Grocery Stores
 
 #### Step 1: Getting a list of all grocery stores in Davis
