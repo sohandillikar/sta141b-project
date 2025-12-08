@@ -1,4 +1,4 @@
-,name,address,lat,lng,place_id,rating,user_ratings_total,types
+id,name,address,lat,lng,place_id,rating,user_ratings_total,types
 0,Davis Food Co-op,"620 G St, Davis, CA 95616, United States",38.5493207,-121.740026,ChIJIxr01p8phYAR8FDlyrQ3DQE,4.6,1056.0,"['grocery_or_supermarket', 'supermarket', 'point_of_interest', 'store', 'food', 'establishment']"
 1,Fast & Easy Mart,"140 B St, Davis, CA 95616, United States",38.5426203,-121.7439707,ChIJ6_TBmQwphYARFqWiXnJb12A,2.5,29.0,"['convenience_store', 'grocery_or_supermarket', 'point_of_interest', 'store', 'food', 'establishment']"
 2,Grocery Outlet,"1800 E 8th St Suite B, Davis, CA 95616, United States",38.5526227,-121.7297644,ChIJvzf9uoIphYARCYMgDCAXErg,4.4,706.0,"['grocery_or_supermarket', 'supermarket', 'point_of_interest', 'store', 'food', 'establishment']"

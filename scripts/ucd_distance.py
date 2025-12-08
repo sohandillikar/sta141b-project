@@ -76,7 +76,8 @@ df['ucd_time_min'] = times_min
 
 # Export to apartments_v5.csv
 output_path = '../data/apartments_v5.csv'
-df.to_csv(output_path, index=False)
+df.index.name = 'id'
+df.to_csv(output_path)
 
 # Print summary statistics
 successful = df['ucd_distance_miles'].notna().sum()
