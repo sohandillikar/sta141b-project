@@ -81,8 +81,7 @@ for idx, apartment_row in apartments_df.iterrows():
             times_min.append(np.nan)
     
     # Add delay between API calls
-    if idx < len(apartments_df) - 1:
-        time.sleep(0.5)
+    time.sleep(0.5)
 
 # Create DataFrame with results
 results_df = pd.DataFrame({

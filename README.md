@@ -42,6 +42,10 @@ We calculated the driving distance in miles and minutes between the apartment co
 
 We calculated the driving distance in miles and minutes between each apartment complex and grocery store in `grocery_distance.py`, similar to `ucd_distance.py`. This time we used batching to limit the number of API calls and improve performance.
 
+#### Step 7: Calculating distance from bus stops
+
+We calculated the walking distance in miles and minutes between each apartment complex and bus stop in `bus_distance.py`, similar to `grocery_distance.py`. This time we used a different batching technique to avoid hitting the API call limits.
+
 ### Grocery Stores
 
 #### Step 1: Getting a list of all grocery stores in Davis
