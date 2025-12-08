@@ -25,7 +25,7 @@ In order to extract information like monthly rent and square feet, we needed to 
 
 #### Step 3: Scraping apartments.com
 
-We built a scraper in `scripts/scrape_apartment_info.py` that scrapes the (`rent_min`, `rent_max`, `sqft_min`, `sqft_max`) for all the apartments in `data/apartments_v2.csv` and exports them in `data/apartments_v3.csv`.
+We built a scraper in `scripts/scrape_apartment_info.py` that scrapes the (`rent_min`, `rent_max`, `sqft_min`, `sqft_max`) for all the apartments in `data/apartments_v2.csv`, calculates the `rent_per_sqft_avg`, and exports them in `data/apartments_v3.csv`.
 
 #### Step 4: Cleaning the apartments dataset
 

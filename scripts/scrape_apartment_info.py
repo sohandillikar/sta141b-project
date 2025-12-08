@@ -136,6 +136,10 @@ try:
             df.at[idx, 'rent_max'] = rent_max
             df.at[idx, 'sqft_min'] = sqft_min
             df.at[idx, 'sqft_max'] = sqft_max
+            if rent_min and rent_max and sqft_min and sqft_max:
+                df.at[idx, 'rent_per_sqft_avg'] = (rent_min + rent_max) / (sqft_min + sqft_max)
+            else:
+                df.at[idx, 'rent_per_sqft_avg'] = float('nan')
             
             if pd.notna(rent_min) or pd.notna(sqft_min):
                 success_count += 1
