@@ -14,11 +14,9 @@ ucd_destination = "250 W Quad, Davis, CA 95616"
 
 df = pd.read_csv('../data/apartments_v4.csv')
 
-# Initialize lists to store results
 distances_miles = []
 times_min = []
 
-# Process each apartment
 for idx, row in df.iterrows():
     apartment_name = row['name']
     apartment_address = row['address']
@@ -26,14 +24,12 @@ for idx, row in df.iterrows():
     print(f"Processing {idx + 1}/{len(df)}: {apartment_name}")
     
     try:
-        # Call Distance Matrix API
         result = gmaps.distance_matrix(
             origins=apartment_address,
             destinations=ucd_destination,
             mode="driving"
         )
         
-        # Extract distance and duration from response
         if result['status'] == 'OK':
             element = result['rows'][0]['elements'][0]
             
@@ -51,18 +47,15 @@ for idx, row in df.iterrows():
                 
                 print(f"  Distance: {distance_miles:.2f} miles, Time: {duration_min:.2f} minutes")
             else:
-                # API returned an error for this specific route
                 print(f"  Warning: Could not calculate route - {element['status']}")
                 distances_miles.append(np.nan)
                 times_min.append(np.nan)
         else:
-            # API request failed
             print(f"  Warning: API request failed - {result['status']}")
             distances_miles.append(np.nan)
             times_min.append(np.nan)
     
     except Exception as e:
-        # Handle any other errors
         print(f"  Error: {str(e)}")
         distances_miles.append(np.nan)
         times_min.append(np.nan)
