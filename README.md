@@ -46,6 +46,10 @@ We calculated the driving distance in miles and minutes between each apartment c
 
 We calculated the walking distance in miles and minutes between each apartment complex and bus stop in `bus_distance.py`, similar to `grocery_distance.py`. This time we used a different batching technique to avoid hitting the API call limits.
 
+#### Step 8: Calculating distance from crimes
+
+We calculated the straight-line distance in miles between each apartment and crime in `crime_distance.py`, using the Haversine Distance formula that accounts for Earth's curvature when calculating the distance between two coordinates.
+
 ### Grocery Stores
 
 #### Step 1: Getting a list of all grocery stores in Davis
@@ -71,3 +75,7 @@ We found a list of the most recent Davis crimes and their addresses in [Davis Cr
 #### Step 2: Filtering and mapping crime severities
 
 We wrote a script in `crime_severity_mapping.py` that removed non-Davis crimes (case numbers that did not start with 'C') and mapped each crime to a severity level on a scale of 1 to 10. We saved this new dataset to `crimes_v2.csv`.
+
+#### Step 3: Geocoding all crimes
+
+In `crime_geocoding.py`, we geocoded all the crimes street addresses to retrieve their latitude and longitude coordinates. We exported this data to `crimes_v3.csv`.
