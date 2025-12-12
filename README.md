@@ -79,3 +79,60 @@ We wrote a script in `crime_severity_mapping.py` that removed non-Davis crimes (
 #### Step 3: Geocoding all crimes
 
 In `crime_geocoding.py`, we geocoded all the crimes street addresses to retrieve their latitude and longitude coordinates. We exported this data to `crimes_v3.csv`.
+
+---
+
+## Apartment Ranking Methodology
+
+To create a ranking system of the apartment complexes, we developed a composite scoring system that combines multiple factors into a single quantitative measure. This system normalizes different metrics into a common scale and applies weighted importance to each factor.
+
+### Normalization Process
+
+All metrics are normalized to a 0-1 scale using min-max normalization. The normalization formula is:
+
+```
+normalized_value = (value - min) / (max - min)
+```
+
+For factors where lower values are preferable (such as distance or crime counts), we apply reverse normalization:
+
+```
+normalized_value = 1 - (value - min) / (max - min)
+```
+
+A score closer to 1 represents a better outcome.
+
+### Individual Factor Scores
+
+Five distinct factor scores are calculated for each apartment:
+
+1. **Affordability Score**: Based on the average rent per square foot (`rent_per_sqft_avg`).
+
+2. **Location Score**: Based on the driving distance to UC Davis (`ucd_distance_miles`).
+
+3. **Accessibility Score**: Calculated as the average of two sub-scores:
+
+   - **Grocery Score**: Based on distance to the nearest grocery store (`nearest_grocery_distance`), with reverse normalization
+   - **Transit Score**: Based on distance to the nearest bus stop (`nearest_bus_stop_distance`), with reverse normalization
+
+   This composite accessibility metric reflects convenience for daily living needs and public transportation access.
+
+4. **Safety Score**: Based on the number of crimes reported within 0.5 miles of the apartment (`crimes_within_0.5mi`).
+
+5. **Quality Score**: Based on the apartment's rating from reviews (`rating`).
+
+### Composite Score Calculation
+
+The overall composite score is calculated as a weighted linear combination of the five factor scores:
+
+```
+composite_score = 0.30 × affordability_score + 0.25 × location_score + 0.20 × accessibility_score + 0.15 × safety_score + 0.10 × quality_score
+```
+
+The weights reflect the relative importance of each factor for student housing decisions:
+
+- **Affordability (30%)**: Highest weight, recognizing budget constraints for students
+- **Location (25%)**: Second highest, emphasizing proximity to campus
+- **Accessibility (20%)**: Important for daily convenience
+- **Safety (15%)**: Significant but secondary to cost and location
+- **Quality (10%)**: Lowest weight, as ratings may be less reliable or available
