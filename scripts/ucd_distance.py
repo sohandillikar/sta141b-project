@@ -63,16 +63,13 @@ for idx, row in df.iterrows():
     # Add delay between API calls
     time.sleep(0.5)
 
-# Add new columns to DataFrame
 df['ucd_distance_miles'] = distances_miles
 df['ucd_time_min'] = times_min
 
-# Export to apartments_v5.csv
 output_path = '../data/apartments_v5.csv'
 df.index.name = 'id'
 df.to_csv(output_path)
 
-# Print summary statistics
 successful = df['ucd_distance_miles'].notna().sum()
 failed = df['ucd_distance_miles'].isna().sum()
 

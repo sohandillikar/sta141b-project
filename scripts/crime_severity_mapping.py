@@ -167,7 +167,6 @@ df = pd.read_csv('../data/crimes_v1.csv')
 # Keep only Davis crimes
 df = df[df['Case Number'].str.startswith('C')]
 
-# Add severity column using mapping
 df['severity'] = df['Report Classification'].map(severity_mapping)
 
 # Check for any unmapped classifications
@@ -181,7 +180,6 @@ print()
 print(f"Severity column added. Distribution:")
 print(df['severity'].value_counts().sort_index())
 
-# Save updated CSV
 df.to_csv('../data/crimes_v2.csv', index=False)
 print()
 print("Updated CSV file saved with severity column!")

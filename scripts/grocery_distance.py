@@ -83,7 +83,6 @@ for idx, apartment_row in apartments_df.iterrows():
     # Add delay between API calls
     time.sleep(0.5)
 
-# Create DataFrame with results
 results_df = pd.DataFrame({
     'apartment_id': apartment_ids,
     'grocery_store_id': grocery_store_ids,
