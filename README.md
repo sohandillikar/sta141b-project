@@ -1,5 +1,7 @@
 # STA 141B Project
 
+View our analysis in [main.ipynb](https://github.com/sohandillikar/sta141b-project/blob/main/main.ipynb).
+
 **Goal:** Find the best student apartment complex in Davis based on the following:
 
 | Criteria                         | Data Source                                                                                                                                          |
